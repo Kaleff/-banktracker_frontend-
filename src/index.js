@@ -4,12 +4,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import CurrencyList from './components/CurrencyList';
+import Homepage from './components/Homepage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App />}>
+        <Route path='' element={<Homepage />} />
         <Route path='rates' element={<CurrencyList />} />
         <Route path='rates/:pageId' element={<CurrencyList />} />
       </Route>

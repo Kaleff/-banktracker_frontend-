@@ -7,9 +7,12 @@ import { Outlet, Link } from
 function App() {
   return (
     <>
-    <nav>
-      <Link to='/rates'>Rates</Link>
-    </nav>
+    <header>
+      <nav>
+        <Link to='/'>Home</Link>
+        <Link to='/rates/1'>Rates</Link>
+      </nav>
+    </header>
     <Outlet />
     </>
   );
