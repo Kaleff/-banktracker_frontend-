@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { APIURL, CURRENCYNAMES } from '../constants'
 import Moment from 'moment'
 
 export default function CurrencyInfo() {
     let params = useParams();
     const [info, setInfo] = useState('');
-    const [historyLog, setLog] = useState('Loading');
+    const [historyLog, setLog] = useState(<><tr><td>Loading..</td></tr></>);
     const mounted = useRef();
 
     useEffect(() => {
@@ -54,6 +54,9 @@ export default function CurrencyInfo() {
                     {historyLog}
                 </tbody>
             </table>
+            {info.id &&
+            <Link to={'/rates/'+Math.ceil(info.id/10)}><button>Go back</button></Link>
+            }
         </>
     )
 }
