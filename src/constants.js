@@ -1,0 +1,1 @@
+export const APIURL = 'http://localhost/banktracker/public/api/'

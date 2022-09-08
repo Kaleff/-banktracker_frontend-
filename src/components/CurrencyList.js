@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef} from 'react'
 import { useParams } from 'react-router-dom'
 import Pagination from './Pagination';
 import { Link } from 'react-router-dom';
+import { APIURL } from '../constants';
 
 function CurrencyList() {
     // Set states
@@ -23,7 +24,7 @@ function CurrencyList() {
     useEffect(() => {
         if (!mounted.current) {
             // do componentDidMount logic, fetch data just once
-            fetch('http://localhost/banktracker/public/api/rates')
+            fetch(APIURL+'rates')
             .then(response => response.json())
             .then(data => setRates(data));
             mounted.current = true;
