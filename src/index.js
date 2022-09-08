@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import CurrencyList from './components/CurrencyList';
 import Homepage from './components/Homepage';
+import CurrencyInfo from './components/CurrencyInfo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
         <Route path='' element={<Homepage />} />
         <Route path='rates' element={<CurrencyList />} />
         <Route path='rates/:pageId' element={<CurrencyList />} />
+        <Route path='money/:acronym' element={<CurrencyInfo />} />
       </Route>
     </Routes>
   </BrowserRouter>

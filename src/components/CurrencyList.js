@@ -21,12 +21,12 @@ function CurrencyList() {
                 {CURRENCYNAMES[currency]}: <Link to={'/money/'+currency}>{currency}</Link>
             </td>
             <td className='currencyColumn'>
-            &nbsp; <span className='fi fi-eu'></span> &nbsp;EUR = {(Math.round(rate * 100) / 100).toFixed(2)} {currency}
+            &nbsp; <span className='fi fi-eu'></span> &nbsp;1 EUR = {(Math.round(rate * 100) / 100).toFixed(2)} {currency}
                 &nbsp; <span className={'fi fi-'+currency.slice(0, -1).toLowerCase()}></span> &nbsp;
             </td>
             <td className='currencyColumn'>
                 &nbsp; <span className={'fi fi-'+currency.slice(0, -1).toLowerCase()}></span> &nbsp;
-                {currency} = {(1/(Math.round(rate * 100) / 100)).toFixed(6)} EUR
+                1 {currency} = {(1/(Math.round(rate * 100) / 100)).toFixed(6)} EUR
                 &nbsp; <span className='fi fi-eu'></span> &nbsp;
             </td>
         </tr>
