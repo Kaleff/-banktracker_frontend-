@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 import CurrencyList from './components/CurrencyList';
 import { Outlet, Link } from 
 'react-router-dom';

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef} from 'react'
 import { useParams } from 'react-router-dom'
 import Pagination from './Pagination';
 import { Link } from 'react-router-dom';
-import { APIURL } from '../constants';
+import { APIURL, CURRENCYNAMES } from '../constants';
 
 function CurrencyList() {
     // Set states
@@ -16,19 +16,31 @@ function CurrencyList() {
     let listItems = Object.entries(rates).slice(offSet, offSet+10).map(([currency, rate], key) => 
         <tr key={key}>
             <td>{key+1+offSet}</td>
-            <td><Link to={'/money/'+currency}>{currency}</Link></td>
-            <td>EUR = {(Math.round(rate * 100) / 100).toFixed(2)} {currency}</td>
+            <td className='currencyColumn'>
+                <span className={'fi fi-'+currency.slice(0, -1).toLowerCase()}></span> &nbsp;
+                {CURRENCYNAMES[currency]}: <Link to={'/money/'+currency}>{currency}</Link>
+            </td>
+            <td className='currencyColumn'>
+            &nbsp; <span className='fi fi-eu'></span> &nbsp;EUR = {(Math.round(rate * 100) / 100).toFixed(2)} {currency}
+                &nbsp; <span className={'fi fi-'+currency.slice(0, -1).toLowerCase()}></span> &nbsp;
+            </td>
+            <td className='currencyColumn'>
+                &nbsp; <span className={'fi fi-'+currency.slice(0, -1).toLowerCase()}></span> &nbsp;
+                {currency} = {(1/(Math.round(rate * 100) / 100)).toFixed(6)} EUR
+                &nbsp; <span className='fi fi-eu'></span> &nbsp;
+            </td>
         </tr>
     );
 
     useEffect(() => {
         if (!mounted.current) {
-            // do componentDidMount logic, fetch data just once
+            //componentDidMount logic, fetch data just once
             fetch(APIURL+'rates')
             .then(response => response.json())
             .then(data => setRates(data));
             mounted.current = true;
         } else {
+            // componentDidUpdate logic, update the offset depending on the page
             setPages(Math.ceil(Object.keys(rates).length / 10));
         }
         // Get the offset of the current page
@@ -48,6 +60,7 @@ function CurrencyList() {
                         <th>Nr.</th>
                         <th>Currency</th>
                         <th>Rate</th>
+                        <th>Reverse Rate</th>
                     </tr>
                 </thead>
                 <tbody>{listItems}</tbody>
