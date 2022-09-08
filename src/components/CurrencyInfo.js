@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import { APIURL, CURRENCYNAMES } from '../constants';
+import { APIURL, CURRENCYNAMES } from '../constants'
+import Moment from 'moment'
 
 export default function CurrencyInfo() {
     let params = useParams();
@@ -20,7 +21,7 @@ export default function CurrencyInfo() {
             //componentDidUpdate logic, map the data
             setLog(Object.entries(info.history).map(([date, rate], key) =>
                 <tr key={key}>
-                    <td>{date}</td>
+                    <td>{Moment(date).format("MMM Do YYYY, HH:mm")}</td>
                     <td className='currencyColumn'>
                         <span className='fi fi-eu'></span>&nbsp;
                         1 EUR = {rate[params.acronym]} {params.acronym}
@@ -40,7 +41,7 @@ export default function CurrencyInfo() {
         <>
             <h3>Currency Information</h3>
             <h3><span className={'fi fi-' + params.acronym.slice(0, -1).toLowerCase()}></span> {CURRENCYNAMES[params.acronym]} ({params.acronym})</h3>
-            <h4>Last updated at: {Date(info.updated_at)}</h4>
+            <h4>Last updated at: {Moment(info.updated_at).format("MMM Do YYYY, HH:mm")}</h4>
             <table>
                 <thead>
                     <tr>

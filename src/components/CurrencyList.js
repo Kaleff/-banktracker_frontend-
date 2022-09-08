@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import Pagination from './Pagination';
-import { Link } from 'react-router-dom';
-import { APIURL, CURRENCYNAMES } from '../constants';
+import Pagination from './Pagination'
+import { Link } from 'react-router-dom'
+import { APIURL, CURRENCYNAMES } from '../constants'
 
 function CurrencyList() {
     // Set states
