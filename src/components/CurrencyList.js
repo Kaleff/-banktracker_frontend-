@@ -13,6 +13,7 @@ function CurrencyList() {
 
     let params = useParams();
     // Map the currencies on table rows
+    // (Math.round(rate*100)/100).toFixed(2) - round to 2 decimals
     let listItems = Object.entries(rates).slice(offSet, offSet + 10).map(([currency, rate], key) =>
         <tr key={key}>
             <td>{key + 1 + offSet}</td>
@@ -21,13 +22,14 @@ function CurrencyList() {
                 {CURRENCYNAMES[currency]}: <Link to={'/money/' + currency}>{currency}</Link>
             </td>
             <td className='currencyColumn'>
-                &nbsp; <span className='fi fi-eu'></span> &nbsp;1 EUR = {(Math.round(rate * 100) / 100).toFixed(2)} {currency}
-                &nbsp; <span className={'fi fi-' + currency.slice(0, -1).toLowerCase()}></span> &nbsp;
+                <span className='fi fi-eu'></span>&nbsp;
+                1 EUR = {rate.toFixed(2)} {currency}
+                &nbsp; <span className={'fi fi-' + currency.slice(0, -1).toLowerCase()}></span>
             </td>
             <td className='currencyColumn'>
-                &nbsp; <span className={'fi fi-' + currency.slice(0, -1).toLowerCase()}></span> &nbsp;
-                1 {currency} = {(1 / (Math.round(rate * 100) / 100)).toFixed(6)} EUR
-                &nbsp; <span className='fi fi-eu'></span> &nbsp;
+                <span className={'fi fi-' + currency.slice(0, -1).toLowerCase()}></span>&nbsp;
+                1 {currency} = {(1 / rate).toFixed(6)} EUR
+                &nbsp;<span className='fi fi-eu'></span>
             </td>
         </tr>
     );
